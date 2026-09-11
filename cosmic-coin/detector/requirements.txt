@@ -1,0 +1,4 @@
+web3>=7
+eth-account>=0.13
+pyserial>=3.5
+python-dotenv>=1.0
