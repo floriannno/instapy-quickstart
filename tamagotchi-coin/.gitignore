@@ -1,0 +1,10 @@
+node_modules/
+artifacts/
+cache/
+typechain-types/
+.env
+detector/.env
+detector/events.jsonl
+coverage/
+deployments/localhost.json
+deployments/*.json

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Tamagotchi Coin</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div id="scene" class="scene"></div>
+
+  <header class="hud-top">
+    <div id="name" class="title">TAMAGOTCHI</div>
+    <div id="timerbox" class="timerbox" hidden>
+      <span class="label">STIRBT IN</span>
+      <span id="timer" class="timer">--:--:--</span>
+    </div>
+    <div id="bar" class="bar" hidden><div id="barfill" class="barfill"></div></div>
+  </header>
+
+  <main id="stage" class="stage">
+    <div id="sprite" class="sprite"></div>
+    <div class="shadow"></div>
+  </main>
+
+  <footer class="hud-bottom">
+    <section id="strip" class="strip"></section>
+    <div id="status" class="status"></div>
+    <div id="pending" class="pending" hidden>
+      <span>VERDIENT</span><span id="pendingEth">0 ETH</span>
+      <button id="btnClaim" class="btn small">ABHOLEN</button>
+    </div>
+    <button id="btnConnect" class="btn">WALLET VERBINDEN</button>
+    <button id="btnHatch" class="btn" hidden>EI SCHLÜPFEN · 1.000 TAMA</button>
+    <button id="btnFeed" class="btn" hidden>FÜTTERN · 1.000 TAMA</button>
+    <button id="btnFaucet" class="btn ghost" hidden>TEST-TAMA HOLEN</button>
+    <div id="account" class="account"></div>
+  </footer>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
