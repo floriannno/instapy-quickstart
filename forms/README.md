@@ -30,6 +30,20 @@ var CONFIG = {
   Antworten als Text mit „Antworten kopieren“ und einem DM-Button und schickt sie
   selbst per Instagram-Nachricht.
 
+## Zuordnung zum GoHighLevel-Kontakt (Link-Parameter)
+
+Der Link, den die Opener verschicken, kann Kontaktdaten mitgeben, die das Formular
+vorbelegt und unverändert an den Webhook weiterreicht:
+
+```
+https://…/instagram-qualifizierung.html?c={{contact.id}}&ig={{contact.instagram}}&name={{contact.first_name}}
+```
+
+- `c` (auch `contact_id`) → Feld `contact_id` im Webhook, damit der Workflow den
+  bestehenden Kontakt per ID aktualisiert statt einen neuen anzulegen.
+- `ig` → Instagram-Name vorbelegt, zusätzlich als `link_instagram` mitgeschickt.
+- `name`, `email` → Vorname bzw. E-Mail vorbelegt.
+
 ## Ablauf (13 Fragen + Story-Seite + 7-Säulen-Check, ca. 8 Minuten)
 
 1. Vorname, Instagram-Name, weiblich/männlich/divers

@@ -392,6 +392,28 @@
     if (saved && saved.answers) { answers = saved.answers; step = Math.min(saved.step||0, STEPS.length-2); }
   } catch(e){}
 
+  /* Vorbelegung über Link-Parameter, z. B. aus der Instagram-DM / GoHighLevel:
+     ?c=<Kontakt-ID>&ig=<instagram-name>&name=<Vorname>&email=<E-Mail>
+     Die Kontakt-ID wird unverändert als "contact_id" mitgeschickt, damit
+     GoHighLevel die Antworten dem bestehenden Kontakt zuordnen kann. */
+  var LINK = {};
+  try {
+    var q = new URLSearchParams(location.search);
+    LINK.contact_id = q.get("c") || q.get("contact_id") || q.get("cid") || "";
+    LINK.instagram = (q.get("ig") || q.get("instagram") || "").replace(/^@/,"");
+    LINK.first = q.get("name") || q.get("vorname") || "";
+    LINK.email = q.get("email") || "";
+    if (LINK.instagram || LINK.first){
+      answers.name = answers.name || {first:"", insta:"", gender:""};
+      if (!answers.name.insta && LINK.instagram) answers.name.insta = LINK.instagram;
+      if (!answers.name.first && LINK.first) answers.name.first = LINK.first;
+    }
+    if (LINK.email){
+      answers.contact = answers.contact || {email:"", phone:"", consent:false};
+      if (!answers.contact.email) answers.contact.email = LINK.email;
+    }
+  } catch(e){}
+
   function save(){ try { localStorage.setItem("mbm-check-v2", JSON.stringify({answers:answers, step:step})); } catch(e){} }
   function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
   function firstName(){ return (answers.name && answers.name.first || "").trim(); }
@@ -669,7 +691,7 @@
   function summaryText(){
     var n = answers.name || {}, c = answers.contact || {};
     return [
-      "Schmerzfrei-Check – "+(n.first||"")+" (@"+(n.insta||"")+", "+(n.gender||"")+")",
+      "Schmerzfrei-Check – "+(n.first||"")+" (@"+(n.insta||"")+", "+(n.gender||"")+")"+(LINK.contact_id ? " · Kontakt-ID "+LINK.contact_id : ""),
       "E-Mail: "+(c.email||"")+(c.phone ? " · Tel: "+c.phone : ""),
       "Symptome: "+((answers.symptoms||[]).join(", "))+(answers.symptomsOther ? " – "+answers.symptomsOther : ""),
       "Seit: "+(answers.since||""),
@@ -707,6 +729,7 @@
       in_behandlung: answers.treatment||"", minuten_pro_tag: typeof answers.minutes==="number" ? answers.minutes : "",
       ziel_bis: answers.deadline||"",
       investition: answers.invest||"",
+      contact_id: LINK.contact_id||"", link_instagram: LINK.instagram||"",
       zeitpunkt: new Date().toISOString(), quelle: "Instagram Opener", zusammenfassung: summaryText()
     };
     PILLAR_STEPS.forEach(function(p){
