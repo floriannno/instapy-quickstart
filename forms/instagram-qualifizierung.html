@@ -240,29 +240,56 @@
   var CHANGE_COLORS = [null,"#8AA8AE","#7FA5AD","#6FA0AC","#5F9BAB","#4E96A9","#3E90A6","#2E8AA2","#1F849E","#F0B41E","#F4C21B"];
 
   var PILLAR_STEPS = [
-    { id:"saeule_bewegung", name:"Bewegung", title:"Wie oft bist du pro Woche körperlich aktiv?",
+    { id:"saeule_bewegung", name:"Bewegung",
       dom:"Dein Körper ist für Belastung gebaut. Dosierte Bewegung signalisiert deinem Gehirn Sicherheit – dauerhafte Schonung macht das Schmerzsystem empfindlicher.",
-      options:["Jeden Tag mindestens einmal","4 bis 6 Mal pro Woche","1 bis 3 Mal pro Woche","Selten oder gar nicht"] },
-    { id:"saeule_stress", name:"Stress & Achtsamkeit", title:"Wie hoch ist dein Stresslevel im Alltag?",
-      dom:"Dauerstress hält deinen Körper in Alarmbereitschaft und dreht den Schmerzverstärker im Nervensystem auf.",
-      options:["Niedrig, ich fühle mich meist ruhig","Moderat, manchmal stressig","Hoch, ich stehe häufig unter Druck","Sehr hoch, ich fühle mich dauerhaft gestresst"] },
-    { id:"saeule_psyche", name:"Nervensystem & Psyche", title:"Glaubst du, dass dein Körper heilen und schmerzfrei werden kann?",
-      dom:"Gedanken, Ängste und Bewertungen verändern messbar, wie stark Schmerz empfunden wird. Zuversicht dämpft, Angst verstärkt.",
-      options:["Ja, ich vertraue meinem Körper","Ich hoffe es, bin aber oft unsicher","Ich zweifle oft daran","Ich glaube kaum noch daran"] },
-    { id:"saeule_ernaehrung", name:"Ernährung & Darm", title:"Wie würdest du deine Ernährung beschreiben?",
-      dom:"Essen ist Information für deinen Körper: Es beeinflusst Energie, Entzündungsprozesse und Regeneration.",
-      options:["Sehr bewusst, viel Gemüse und wenig Zucker","Überwiegend ausgewogen, mit Ausnahmen","Gemischt, viel Fertiges und unregelmäßig","Sehr unausgewogen, kaum frische Lebensmittel"] },
-    { id:"saeule_schlaf", name:"Regeneration & Schlaf", title:"Wie erholsam ist dein Schlaf?",
-      dom:"Schon wenige schlechte Nächte senken die Schmerzschwelle. Schlaf ist die wichtigste Regenerationszeit deines Nervensystems.",
-      options:["Ich schlafe durch und wache erholt auf","Meist okay, manchmal unruhig","Häufig unterbrochen durch Schmerzen oder Unruhe","Fast jede Nacht schlecht, kaum Erholung"] },
-    { id:"saeule_sozial", name:"Soziales Umfeld", title:"Fühlst du dich mit deinen Beschwerden von deinem Umfeld unterstützt?",
-      dom:"Verbindung bedeutet für dein Gehirn Sicherheit. Isolation und Konflikte füllen den Schmerzeimer – echte Kontakte leeren ihn.",
-      options:["Sehr, ich fühle mich getragen","Größtenteils, mit kleinen Lücken","Eher wenig","Kaum, ich fühle mich damit allein"] },
-    { id:"saeule_schmerzverstaendnis", name:"Schmerzverständnis", title:"Wie gut verstehst du, wie deine Schmerzen entstehen?",
+      q1:{ title:"Wie oft bist du pro Woche körperlich aktiv (z. B. Spaziergang, Übungen oder Sport)?",
+           options:["Jeden Tag mindestens 1 Mal","4 bis 6 Mal pro Woche","1 bis 3 Mal pro Woche","Selten oder gar nicht"] },
+      q2:{ title:"Wie würdest du deine Mobilität und Beweglichkeit einschätzen?",
+           options:["Sehr gut – ich bewege mich frei und ohne Einschränkungen","Gut – leichte Einschränkungen in manchen Bereichen","Eingeschränkt – Bewegung fällt mir oft schwer","Sehr eingeschränkt – Schmerzen begrenzen meine Bewegung stark"] },
+      slider:{ title:"Wie belastbar fühlt sich dein Körper an?", lo:"Sehr empfindlich", hi:"Sehr belastbar" } },
+    { id:"saeule_psyche", name:"Nervensystem & Psyche",
+      dom:"Schmerz ist eine Schutzreaktion deines Gehirns. Ein Nervensystem im Dauer-Alarm bewertet selbst harmlose Reize als Gefahr.",
+      q1:{ title:"Wie oft fühlst du dich innerlich angespannt oder in Alarmbereitschaft?",
+           options:["Selten – ich fühle mich meistens sicher und ruhig","Manchmal, aber ich komme wieder runter","Oft – ein Grundrauschen von Anspannung ist ständig da","Fast immer – mein Körper kommt kaum in echte Ruhe"] },
+      q2:{ title:"Glaubst du, dass dein Körper heilen und schmerzfrei werden kann?",
+           options:["Ja – ich vertraue meinem Körper und seiner Heilungsfähigkeit","Ich hoffe es, bin aber manchmal unsicher","Ich zweifle oft daran, dass sich etwas verbessern kann","Ich glaube kaum noch daran – es fühlt sich hoffnungslos an"] },
+      slider:{ title:"Wie sicher fühlst du dich aktuell in deinem Körper?", lo:"Dauerhaft im Alarm", hi:"Sicher & reguliert" } },
+    { id:"saeule_stress", name:"Stress & Achtsamkeit",
+      dom:"Dauerhafter Stress hält deinen Körper in Alarmbereitschaft und dreht den Schmerzverstärker im Nervensystem auf.",
+      q1:{ title:"Wie hoch ist dein Stresslevel im Alltag?",
+           options:["Niedrig – ich fühle mich meist ruhig und entspannt","Moderat – manchmal stressig, aber beherrschbar","Hoch – ich stehe häufig unter Druck","Sehr hoch – ich fühle mich dauerhaft gestresst"] },
+      q2:{ title:"Wie gut kannst du nach einem stressigen Tag abschalten?",
+           options:["Sehr gut – Körper und Geist fahren spürbar runter","Teilweise – ich komme etwas zur Ruhe","Kaum – mein Kopf bleibt aktiv","Gar nicht – ich bleibe innerlich angespannt"] },
+      slider:{ title:"Wie gut kannst du dein Stressniveau im Alltag selbst regulieren?", lo:"Oft ausgeliefert", hi:"Bewusst regulierbar" } },
+    { id:"saeule_ernaehrung", name:"Ernährung & Darmgesundheit",
+      dom:"Ein gesunder Darm reguliert Entzündungen und beeinflusst direkt Schmerz, Energie und Stimmung – über die Darm-Hirn-Achse.",
+      q1:{ title:"Wie würdest du deine Ernährung beschreiben?",
+           options:["Sehr bewusst – viel Gemüse, wenig Zucker und verarbeitete Lebensmittel","Überwiegend ausgewogen, mit gelegentlichen Ausnahmen","Gemischt – viel Fertigkost oder unregelmäßige Mahlzeiten","Sehr unausgewogen – kaum frische Lebensmittel"] },
+      q2:{ title:"Hast du Verdauungsbeschwerden?",
+           options:["Nein – meine Verdauung ist stabil","Selten – gelegentliche Beschwerden","Häufig – meine Verdauung ist regelmäßig ein Thema","Fast täglich – mein Darm bereitet mir deutliche Probleme"] },
+      slider:{ title:"Wie stabil ist dein Energielevel nach dem Essen?", lo:"Starke Müdigkeit", hi:"Konstant stabil" } },
+    { id:"saeule_schlaf", name:"Regeneration & Schlaf",
+      dom:"Schlaf ist die wichtigste Regenerationszeit deines Nervensystems. Schon wenige schlechte Nächte senken die Schmerzschwelle.",
+      q1:{ title:"Wie viele Stunden schläfst du durchschnittlich pro Nacht?",
+           options:["8 Stunden oder mehr","7 bis 8 Stunden","5 bis 6 Stunden","Weniger als 5 Stunden"] },
+      q2:{ title:"Wachst du nachts aufgrund von Schmerzen oder Unruhe auf?",
+           options:["Nein – ich schlafe meistens durch","Gelegentlich, aber ich schlafe schnell wieder ein","Häufig – Schmerzen oder Anspannung wecken mich","Fast jede Nacht – kaum echte Erholung"] },
+      slider:{ title:"Wie erholt wachst du morgens auf?", lo:"Erschöpft", hi:"Vollständig erholt" } },
+    { id:"saeule_sozial", name:"Soziales Umfeld",
+      dom:"Chronischer Schmerz ist keine rein körperliche Erfahrung. Soziale Isolation und fehlende Unterstützung halten dein Nervensystem im Schutzmodus.",
+      q1:{ title:"Fühlst du dich emotional unterstützt (Partnerschaft, Familie oder enge Freunde)?",
+           options:["Sehr unterstützt – ich fühle mich getragen","Größtenteils unterstützt, mit kleinen Lücken","Eher wenig unterstützt","Gar nicht unterstützt – ich fühle mich allein damit"] },
+      q2:{ title:"Vermeidest du soziale Kontakte aufgrund deiner Schmerzen?",
+           options:["Nein, ich bleibe aktiv im Kontakt","Selten – nur an schlechten Tagen","Häufig – ich ziehe mich öfter zurück","Sehr häufig – ich meide Kontakte aus Angst oder Erschöpfung"] },
+      slider:{ title:"Wie verbunden fühlst du dich aktuell mit anderen Menschen?", lo:"Sehr einsam", hi:"Sehr verbunden" } },
+    { id:"saeule_schmerzverstaendnis", name:"Schmerzverständnis",
       dom:"Wer versteht, wie Schmerz wirklich entsteht, nimmt ihm die Bedrohlichkeit. Verstehen ist selbst schon Therapie.",
-      options:["Gut, ich kenne die Zusammenhänge","Teilweise, vieles ist mir unklar","Kaum, ich habe widersprüchliche Erklärungen bekommen","Gar nicht, niemand konnte es mir erklären"] }
-  ].map(function(p,i){ return { id:p.id, kind:"single", pillar:i+1, name:p.name, title:p.title, dom:p.dom, options:p.options.map(function(o){ return [o,""]; }) }; });
-
+      q1:{ title:"Wie gut verstehst du, wie deine Schmerzen entstehen?",
+           options:["Gut – ich kenne die Zusammenhänge","Teilweise – vieles ist mir noch unklar","Kaum – ich habe viele widersprüchliche Erklärungen bekommen","Gar nicht – niemand konnte es mir erklären"] },
+      q2:{ title:"Was glaubst du, ist die Hauptursache deiner Schmerzen?",
+           options:["Ein körperlicher Schaden, der repariert werden muss","Wahrscheinlich mehrere Faktoren zusammen","Ich weiß es ehrlich gesagt nicht","Ich habe aufgehört, danach zu suchen"] },
+      slider:{ title:"Wie bedrohlich fühlt sich dein Schmerz für dich an?", lo:"Sehr bedrohlich", hi:"Ich kann ihn einordnen" } }
+  ].map(function(p,i){ p.kind="pillar"; p.pillar=i+1; return p; });
   var STEPS = [
     { id:"intro", kind:"intro" },
     { id:"name", kind:"name", title:"Wie darf ich dich nennen?",
@@ -407,12 +434,12 @@
 
     if (s.kind==="intro"){
       html = '<section class="step">'
-        + '<div class="hero"><img src="'+IMG_HERO+'" alt="Dominik Barkow, Schmerzfrei-Coach"><span class="tag">Schmerzfrei-Check · ca. 6 Minuten</span></div>'
+        + '<div class="hero"><img src="'+IMG_HERO+'" alt="Dominik Barkow, Schmerzfrei-Coach"><span class="tag">Schmerzfrei-Check · ca. 8 Minuten</span></div>'
         + '<h1>Kann ich dir helfen, schmerzfrei zu werden?</h1>'
         + '<div class="intro-copy">'
         + '<p>Hey, schön, dass du hier bist! Ich bin Dominik – und ich hatte selbst über zehn Jahre lang chronische Schmerzen, jeden einzelnen Tag. Heute bin ich schmerzfrei und helfe Menschen, die genau da stehen, wo ich damals stand.</p>'
         + '<p>Damit ich dir wirklich etwas Sinnvolles schreiben kann und keine Standard-Nachricht, brauche ich ein ehrliches Bild von deiner Situation. Dafür sind die nächsten Fragen da – nimm dir kurz Zeit dafür.</p>'
-        + '<div class="facts"><span class="fact">'+QUESTION_COUNT+' Fragen + 7-Säulen-Check</span><span class="fact">ca. 6 Minuten</span><span class="fact">Antwort persönlich per DM</span></div>'
+        + '<div class="facts"><span class="fact">'+QUESTION_COUNT+' Fragen + 7-Säulen-Check</span><span class="fact">ca. 8 Minuten</span><span class="fact">Antwort persönlich per DM</span></div>'
         + '<p class="sig">Dominik</p>'
         + '</div></section>';
     }
@@ -426,9 +453,7 @@
         + '</div></div></section>';
     }
     else if (s.kind==="multi" || s.kind==="single"){
-      html = '<section class="step">'+bubble(s.dom)
-        + (s.pillar ? '<p class="eyebrow">Säule '+s.pillar+' von '+PILLAR_COUNT+' · '+esc(s.name)+'</p>' : '')
-        + '<h2>'+esc(s.title)+'</h2>'
+      html = '<section class="step">'+bubble(s.dom)+'<h2>'+esc(s.title)+'</h2>'
         + (s.hint ? '<p class="hint">'+esc(s.hint)+'</p>' : '')
         + optionsHtml(s, s.options, s.id, s.kind, s.grid);
       if (s.other) html += '<div class="field"><label for="f-other">'+esc(s.other.label)+'</label><input class="input" id="f-other" data-key="'+s.other.key+'" type="text" placeholder="'+esc(s.other.ph)+'" value="'+esc(answers[s.other.key])+'"></div>';
@@ -473,6 +498,21 @@
         + '<p class="hint" id="min-hint">'+(typeof answers.minutes==="number" ? "" : "Schieb den Regler auf deinen Wert.")+'</p></div>'
         + '</section>';
     }
+    else if (s.kind==="pillar"){
+      var sv = answers[s.id+"_skala"];
+      html = '<section class="step">'+bubble(s.dom)
+        + '<p class="eyebrow">Säule '+s.pillar+' von '+PILLAR_COUNT+' · '+esc(s.name)+'</p>'
+        + '<h2>'+esc(s.q1.title)+'</h2>'
+        + optionsHtml(s, s.q1.options.map(function(o){ return [o,""]; }), s.id+"_1", "single", false)
+        + '<p class="sub-q">'+esc(s.q2.title)+'</p>'
+        + optionsHtml(s, s.q2.options.map(function(o){ return [o,""]; }), s.id+"_2", "single", false)
+        + '<p class="sub-q">'+esc(s.slider.title)+'</p>'
+        + '<div class="slider"><div class="val"><span id="sl-val">'+(typeof sv==="number" ? sv : 5)+'</span><small>von 10</small></div>'
+        + '<input type="range" id="f-slider" min="1" max="10" step="1" value="'+(typeof sv==="number" ? sv : 5)+'" aria-label="'+esc(s.slider.title)+'">'
+        + '<div class="ends"><span>1 · '+esc(s.slider.lo)+'</span><span>10 · '+esc(s.slider.hi)+'</span></div>'
+        + '<p class="hint" id="sl-hint">'+(typeof sv==="number" ? "" : "Schieb den Regler auf deinen Wert.")+'</p></div>'
+        + '</section>';
+    }
     else if (s.kind==="story"){
       html = '<section class="step">'
         + '<div class="hero"><img src="'+IMG_DONE+'" alt="Dominik Barkow"><span class="tag">Kurz zu mir</span></div>'
@@ -482,7 +522,7 @@
         + '<p>Erst als ich alle Faktoren zusammen betrachtet habe, wurde ich schmerzfrei. Aus diesem Weg ist MyBodyMind entstanden – inzwischen haben wir <b>über 1.200 Menschen</b> in die Schmerzfreiheit begleitet.</p>'
         + '</div>'
         + '<div class="testis">'+TESTIS.map(function(x){ return '<figure class="testi"><img src="'+x[0]+'" alt="'+esc(x[1])+'"><figcaption><b>'+esc(x[1])+'</b><span>'+esc(x[2])+'</span></figcaption></figure>'; }).join("")+'</div>'
-        + '<div class="next-up"><span class="k">Als Nächstes</span><span>7 kurze Fragen zu den 7 Säulen, die deine Schmerzen beeinflussen – damit ich ein erstes Bild von dir bekomme.</span></div>'
+        + '<div class="next-up"><span class="k">Als Nächstes</span><span>Ein kurzer Check zu den 7 Säulen, die deine Schmerzen beeinflussen – je Säule zwei Fragen und ein Regler, damit ich ein erstes Bild von dir bekomme.</span></div>'
         + '</section>';
     }
     else if (s.kind==="contact"){
@@ -561,7 +601,16 @@
       });
       setTimeout(function(){ f.focus(); }, 50);
     }
-    if (s.kind==="multi" || s.kind==="single" || s.kind==="job" || s.kind==="time" || s.kind==="tried") bindOptions();
+    if (["multi","single","job","time","tried","pillar"].indexOf(s.kind)>=0) bindOptions();
+    if (s.kind==="pillar"){
+      var sl = document.getElementById("f-slider");
+      sl.addEventListener("input", function(){
+        answers[s.id+"_skala"] = parseInt(sl.value,10);
+        document.getElementById("sl-val").textContent = sl.value;
+        document.getElementById("sl-hint").textContent = "";
+        validate(); save();
+      });
+    }
     if (s.kind==="text" || s.kind==="tried") bindTextareas();
     if (s.kind==="scale"){
       stepsEl.querySelectorAll(".scale button").forEach(function(b){
@@ -606,6 +655,7 @@
       case "tried": return (a.tried||[]).length>0 && (a.triedReflect||"").trim().length>0;
       case "job": return (a.job||"").trim().length>=2 && !!a.hours;
       case "time": return !!a.treatment && typeof a.minutes==="number";
+      case "pillar": return !!a[s.id+"_1"] && !!a[s.id+"_2"] && typeof a[s.id+"_skala"]==="number";
       case "contact": return !!(a.contact && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(a.contact.email) && a.contact.consent);
     }
     return true;
@@ -630,7 +680,8 @@
       "Beruf: "+(answers.job||"")+" · "+(answers.hours||""),
       "Behandlung: "+(answers.treatment||"")+" · Zeit: "+(typeof answers.minutes==="number" ? answers.minutes+" Min/Tag" : ""),
       "Ziel bis: "+(answers.deadline||""),
-      "7 Säulen: "+PILLAR_STEPS.map(function(p){ return p.name+": "+(answers[p.id]||"–"); }).join(" · "),
+      "7 Säulen:",
+      PILLAR_STEPS.map(function(p){ return "  "+p.name+": "+(answers[p.id+"_1"]||"–")+" | "+(answers[p.id+"_2"]||"–")+" | Skala "+(typeof answers[p.id+"_skala"]==="number" ? answers[p.id+"_skala"]+"/10" : "–"); }).join("\n"),
       "Investition: "+(answers.invest||""),
       "",
       "Was hat wirklich geholfen:",
@@ -643,7 +694,7 @@
 
   function payload(){
     var n = answers.name || {}, c = answers.contact || {};
-    return {
+    var out = {
       vorname: n.first||"", instagram: n.insta||"", geschlecht: n.gender||"",
       email: c.email||"", telefon: c.phone||"", bestaetigung: c.consent ? "ja" : "nein",
       symptome: (answers.symptoms||[]).join(", "), symptome_sonstiges: answers.symptomsOther||"",
@@ -655,12 +706,14 @@
       erstes_ohne_beschwerden: answers.future||"",
       in_behandlung: answers.treatment||"", minuten_pro_tag: typeof answers.minutes==="number" ? answers.minutes : "",
       ziel_bis: answers.deadline||"",
-      saeule_bewegung: answers.saeule_bewegung||"", saeule_stress: answers.saeule_stress||"", saeule_psyche: answers.saeule_psyche||"",
-      saeule_ernaehrung: answers.saeule_ernaehrung||"", saeule_schlaf: answers.saeule_schlaf||"", saeule_sozial: answers.saeule_sozial||"",
-      saeule_schmerzverstaendnis: answers.saeule_schmerzverstaendnis||"",
       investition: answers.invest||"",
       zeitpunkt: new Date().toISOString(), quelle: "Instagram Opener", zusammenfassung: summaryText()
     };
+    PILLAR_STEPS.forEach(function(p){
+      out[p.id+"_frage1"] = answers[p.id+"_1"]||""; out[p.id+"_frage2"] = answers[p.id+"_2"]||"";
+      out[p.id+"_skala"] = typeof answers[p.id+"_skala"]==="number" ? answers[p.id+"_skala"] : "";
+    });
+    return out;
   }
 
   function showFallback(msg){
