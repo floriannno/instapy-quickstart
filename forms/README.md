@@ -50,10 +50,12 @@ Wird der Link manuell aus der Instagram-App verschickt, ist `contact_id` leer. D
 bleibt zum Zuordnen nur, was die Person selbst eintippt: Instagram-Name (Frage 1,
 Feld `instagram`), E-Mail und Telefon (letzter Schritt).
 
-## Ablauf (22 Seiten, ca. 8 Minuten)
+## Ablauf (23 Seiten, ca. 8 Minuten)
 
 Design: Farben und Schriften der MyBodyMind-Seiten (Plus Jakarta Sans, Inter, Petrol/Gold/Creme).
-Die Fortschrittsanzeige zählt alle Seiten („Seite 3 von 22“).
+Die Fortschrittsanzeige zählt alle Seiten („Seite 3 von 23“).
+Lange Wörter werden per weicher Trennstelle umbrochen („Rücken-schmerzen“), nie mitten im Wort;
+keine Antwort braucht mehr als zwei Zeilen (automatisch geprüft ab 320px Breite).
 
 
 1. Vorname, Instagram-Name, weiblich/männlich/divers
@@ -69,13 +71,15 @@ Die Fortschrittsanzeige zählt alle Seiten („Seite 3 von 22“).
 9. Freitext: In 6–12 Monaten beschwerdefrei – was wäre das Erste?
 10. In Behandlung? (Auswahl) + Regler: Minuten pro Tag für die Gesundheit
 11. Bis wann soll das Ziel erreicht sein?
-12. Story-Seite: Dominiks Geschichte in drei Sätzen (10 Jahre täglich Schmerzen,
-    über 1.200 Menschen begleitet) + 3 Testimonial-Bilder (Frank, Maren, Anna-Maria)
-13. 7-Säulen-Check: je Säule zwei Auswahlfragen und eine Regler-Frage (1–10),
+12. Story-Seite: Dominiks Geschichte, Kennzahlen-Box (1.200+ begleitete Menschen,
+    10 Jahre selbst betroffen, 400.000+ Follower) und drei Kundenstimmen im Stil
+    der Kompass-Seite (Sterne, Überschrift, Zitat, „verifizierte Bewertung“)
+13. Eigene Seite „Die 7 Säulen deiner Schmerzfreiheit“ mit der nummerierten Übersicht
+14. 7-Säulen-Check: je Säule zwei Auswahlfragen und eine Regler-Frage (1–10),
     übernommen aus der Schmerz- & Symptomanalyse (Bewegung, Nervensystem & Psyche,
     Stress & Achtsamkeit, Ernährung & Darmgesundheit, Regeneration & Schlaf,
     Soziales Umfeld, Schmerzverständnis)
-14. Investitionsbereitschaft (Bis 1.000 € / 1.000–3.000 € / 3.000–5.000 € / Mehr als 5.000 €)
-15. E-Mail (Pflicht), Telefon (optional), Bestätigung → „Bewerbung absenden“
+15. Investitionsbereitschaft (Bis 1.000 € / 1.000–3.000 € / 3.000–5.000 € / Mehr als 5.000 €)
+16. E-Mail (Pflicht), Telefon (optional), Bestätigung → „Bewerbung absenden“
 
 Texte, Antwortoptionen und Beträge lassen sich direkt im `STEPS`-Array im Script anpassen.
