@@ -35,12 +35,12 @@ var CONFIG = {
    Unbeweglichkeit, Unzufriedenheit) + Freifeld für Diagnose
 3. Seit wann? (< 3 Monate, 3–12 Monate, 1–5 Jahre, > 5 Jahre)
 4. Stärke der Beschwerden 0–10
-5. Bisher probiert (Mehrfachauswahl, „Anderes“ mit Freifeld) + Reflexion als Textfeld
-   (mind. 100 Zeichen): Was hat wirklich geholfen?
+5. Bisher probiert (Mehrfachauswahl, „Anderes“ mit Freifeld) + Reflexion als Textfeld:
+   Was hat wirklich geholfen?
 6. Woran ist es bisher gescheitert? (Mehrfachauswahl)
 7. Wie sehr willst du Veränderung? 1–10
 8. Beruf (Freitext) + Wochenstunden (Auswahl)
-9. Freitext (mind. 80 Zeichen): In 6–12 Monaten beschwerdefrei – was wäre das Erste?
+9. Freitext: In 6–12 Monaten beschwerdefrei – was wäre das Erste?
 10. In Behandlung? (Auswahl) + Regler: Minuten pro Tag für die Gesundheit
 11. Bis wann soll das Ziel erreicht sein?
 12. Infoseite: ganzheitlicher Ansatz, 1.200+ begleitete Menschen, selbst schmerzfrei,

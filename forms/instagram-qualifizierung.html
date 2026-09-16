@@ -1,4 +1,12 @@
-<!DOCTYPE html>\n<html lang="de">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n<meta name="robots" content="noindex">\n<title>Schmerzfrei-Check</title>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Schmerzfrei-Check</title>
+</head>
+<body>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap">
@@ -271,7 +279,7 @@
       empty:"Tippe auf die Zahl, die zu deinem Alltag passt." },
     { id:"tried", kind:"tried", title:"Was hast du bisher schon probiert?",
       dom:"Klick an, was du schon hinter dir hast – und dann nimm dir bitte einen Moment für die Frage darunter. Je ehrlicher, desto besser kann ich einschätzen, was bisher gefehlt hat.",
-      hint:"Mehrfachauswahl möglich.", grid:true, minChars:100,
+      hint:"Mehrfachauswahl möglich.", grid:true,
       options:[
         ["Physiotherapie",""],["Osteopathie / Chiropraktik",""],["Schmerzmittel",""],["Spritzen / Infiltrationen",""],
         ["Operation",""],["Massage",""],["Yoga / Dehnen",""],["Krafttraining / Fitness",""],
@@ -299,7 +307,7 @@
     { id:"job", kind:"job", title:"Was machst du beruflich?",
       dom:"Dein Alltag ist ein großer Teil des Puzzles: Sitzen, Heben, Schichtdienst, Verantwortung – all das füllt den Schmerzeimer mit.",
       hours:[["Unter 20 Stunden pro Woche",""],["20 bis 35 Stunden",""],["35 bis 45 Stunden",""],["Über 45 Stunden",""],["Aktuell nicht berufstätig / Rente",""]] },
-    { id:"future", kind:"text", minChars:80,
+    { id:"future", kind:"text",
       title:"Stell dir vor, deine Beschwerden wären in 6 bis 12 Monaten weg. Was wäre das Erste, was du tun würdest?",
       dom:"Schreib es so konkret wie möglich. Bei mir war es damals: wieder Basketball spielen, ohne am nächsten Tag Angst zu haben.",
       placeholder:"Zum Beispiel: Wieder mit meinen Kindern toben, eine lange Wanderung machen, morgens ohne Angst aufstehen …" },
@@ -363,9 +371,8 @@
     });
     return h+'</div>';
   }
-  function textareaHtml(key, placeholder, minChars){
-    return '<div class="field"><textarea class="input" id="f-'+key+'" data-min="'+minChars+'" placeholder="'+esc(placeholder)+'">'+esc(answers[key]||"")+'</textarea>'
-      + '<div class="count"><span id="cnt-'+key+'"></span><span>mind. '+minChars+' Zeichen</span></div></div>';
+  function textareaHtml(key, placeholder){
+    return '<div class="field"><textarea class="input" id="f-'+key+'" placeholder="'+esc(placeholder)+'">'+esc(answers[key]||"")+'</textarea></div>';
   }
   function levelOut(s, v){
     if (typeof v!=="number") return '<span class="d">'+esc(s.empty)+'</span>';
@@ -410,7 +417,7 @@
         + optionsHtml(s, s.options, "tried", "multi", true)
         + '<div class="field" id="tried-other-wrap"'+((answers.tried||[]).indexOf("Anderes")<0?' hidden':'')+'><label for="f-other">Was noch?</label><input class="input" id="f-other" data-key="triedOther" type="text" placeholder="z. B. Faszienrolle, Hypnose, Cortison …" value="'+esc(answers.triedOther)+'"></div>'
         + '<p class="sub-q">'+esc(s.reflect)+'</p>'
-        + textareaHtml("triedReflect", s.placeholder, s.minChars)
+        + textareaHtml("triedReflect", s.placeholder)
         + '</section>';
     }
     else if (s.kind==="scale"){
@@ -424,7 +431,7 @@
       html += '<div class="lvl-out" id="lvl-out">'+levelOut(s, v)+'</div></section>';
     }
     else if (s.kind==="text"){
-      html = '<section class="step">'+bubble(s.dom)+'<h2>'+esc(s.title)+'</h2>'+textareaHtml(s.id, s.placeholder, s.minChars)+'</section>';
+      html = '<section class="step">'+bubble(s.dom)+'<h2>'+esc(s.title)+'</h2>'+textareaHtml(s.id, s.placeholder)+'</section>';
     }
     else if (s.kind==="job"){
       html = '<section class="step">'+bubble(s.dom)+'<h2>'+esc(s.title)+'</h2>'
@@ -512,13 +519,8 @@
   }
   function bindTextareas(){
     stepsEl.querySelectorAll("textarea").forEach(function(ta){
-      var key = ta.id.replace(/^f-/,""), cnt = document.getElementById("cnt-"+key), min = parseInt(ta.getAttribute("data-min"),10);
-      function upd(){
-        answers[key] = ta.value;
-        var n = ta.value.trim().length;
-        cnt.innerHTML = n>=min ? '<span class="ok">'+n+' Zeichen – danke dir!</span>' : '<span class="todo">'+n+' / '+min+' Zeichen</span>';
-        validate(); save();
-      }
+      var key = ta.id.replace(/^f-/,"");
+      function upd(){ answers[key] = ta.value; validate(); save(); }
       ta.addEventListener("input", upd); upd();
     });
   }
@@ -579,8 +581,8 @@
       case "multi": return (a[s.id]||[]).length>0;
       case "single": return !!a[s.id];
       case "scale": return typeof a[s.id]==="number";
-      case "text": return (a[s.id]||"").trim().length>=s.minChars;
-      case "tried": return (a.tried||[]).length>0 && (a.triedReflect||"").trim().length>=s.minChars;
+      case "text": return (a[s.id]||"").trim().length>0;
+      case "tried": return (a.tried||[]).length>0 && (a.triedReflect||"").trim().length>0;
       case "job": return (a.job||"").trim().length>=2 && !!a.hours;
       case "time": return !!a.treatment && typeof a.minutes==="number";
       case "contact": return !!(a.contact && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(a.contact.email) && a.contact.consent);
@@ -614,7 +616,7 @@
       "",
       "Das Erste ohne Beschwerden:",
       (answers.future||"")
-    ].join("\n</head>\n<body>\n");
+    ].join("\n");
   }
 
   function payload(){
@@ -676,4 +678,6 @@
   render();
 })();
 </script>
-\n</body>\n</html>\n
+
+</body>
+</html>
