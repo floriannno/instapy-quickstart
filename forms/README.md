@@ -32,17 +32,23 @@ var CONFIG = {
 
 ## Zuordnung zum GoHighLevel-Kontakt (Link-Parameter)
 
-Der Link, den die Opener verschicken, kann Kontaktdaten mitgeben, die das Formular
-vorbelegt und unverändert an den Webhook weiterreicht:
+Der Link kann Kontaktdaten mitgeben, die das Formular vorbelegt und unverändert an den
+Webhook weiterreicht. Das funktioniert nur, wenn der Link aus GoHighLevel heraus
+verschickt wird (Instagram-DM über die GHL-Konversationen), weil nur dort die
+Merge-Felder gefüllt werden:
 
 ```
-https://…/instagram-qualifizierung.html?c={{contact.id}}&ig={{contact.instagram}}&name={{contact.first_name}}
+https://…/instagram-qualifizierung.html?c={{contact.id}}&name={{contact.first_name}}
 ```
 
-- `c` (auch `contact_id`) → Feld `contact_id` im Webhook, damit der Workflow den
-  bestehenden Kontakt per ID aktualisiert statt einen neuen anzulegen.
-- `ig` → Instagram-Name vorbelegt, zusätzlich als `link_instagram` mitgeschickt.
-- `name`, `email` → Vorname bzw. E-Mail vorbelegt.
+- `c` (auch `contact_id`) → Feld `contact_id` im Webhook. Der Workflow aktualisiert
+  damit den bestehenden Kontakt per ID, statt über E-Mail/Telefon zu raten.
+- `name`, `email`, `ig` → Vorname, E-Mail bzw. Instagram-Name vorbelegt (`ig` nur, wenn
+  ihr den Instagram-Namen in einem Custom Field pflegt).
+
+Wird der Link manuell aus der Instagram-App verschickt, ist `contact_id` leer. Dann
+bleibt zum Zuordnen nur, was die Person selbst eintippt: Instagram-Name (Frage 1,
+Feld `instagram`), E-Mail und Telefon (letzter Schritt).
 
 ## Ablauf (13 Fragen + Story-Seite + 7-Säulen-Check, ca. 8 Minuten)
 
