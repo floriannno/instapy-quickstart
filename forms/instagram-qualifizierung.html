@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="robots" content="noindex">
-<title>Schmerzfrei-Check</title>
-</head>
-<body>
+<!DOCTYPE html>\n<html lang="de">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n<meta name="robots" content="noindex">\n<title>Schmerzfrei-Check</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap">
@@ -195,12 +187,12 @@
 <script>
 (function(){
   /* ========= KONFIGURATION =========
-     webhookUrl: Zapier "Catch Hook" / Make-Webhook / eigener Endpunkt.
+     webhookUrl: GoHighLevel "Eingehender Webhook" (oder Zapier/Make). Versand als JSON.
                  Leer lassen = kein Versand; die Person bekommt am Ende
                  ihre Antworten zum Kopieren und schickt sie per DM.
      instagramHandle: euer Instagram-Name ohne @ (für den DM-Link). */
   var CONFIG = {
-    webhookUrl: "",
+    webhookUrl: "https://services.leadconnectorhq.com/hooks/zQPVp24qk3poT0j7zlHJ/webhook-trigger/fd77bafa-b8fc-41db-aa1a-c65560b00f15",
     instagramHandle: ""
   };
 
@@ -622,7 +614,7 @@
       "",
       "Das Erste ohne Beschwerden:",
       (answers.future||"")
-    ].join("\n");
+    ].join("\n</head>\n<body>\n");
   }
 
   function payload(){
@@ -666,11 +658,12 @@
     var state = document.getElementById("send-state");
     function clear(){ try { localStorage.removeItem("mbm-check-v2"); } catch(e){} }
     if (!CONFIG.webhookUrl){ showFallback("Fast geschafft – ein letzter Schritt:"); clear(); return; }
-    var body = new URLSearchParams(payload());
-    fetch(CONFIG.webhookUrl, { method:"POST", body:body, mode:"cors" })
-      .then(function(r){ if (!r.ok && r.type!=="opaque") throw new Error("HTTP "+r.status); done(); })
+    var body = JSON.stringify(payload());
+    fetch(CONFIG.webhookUrl, { method:"POST", headers:{"Content-Type":"application/json"}, body:body, mode:"cors" })
+      .then(function(r){ if (!r.ok) throw new Error("HTTP "+r.status); done(); })
       .catch(function(){
-        return fetch(CONFIG.webhookUrl, { method:"POST", body:body, mode:"no-cors" }).then(done, function(){
+        /* Fallback ohne CORS-Preflight: Antwort ist dann nicht lesbar, der Request kommt aber an. */
+        return fetch(CONFIG.webhookUrl, { method:"POST", headers:{"Content-Type":"text/plain"}, body:body, mode:"no-cors" }).then(done, function(){
           showFallback("Die automatische Übermittlung hat leider nicht geklappt.");
         });
       });
@@ -683,6 +676,4 @@
   render();
 })();
 </script>
-
-</body>
-</html>
+\n</body>\n</html>\n

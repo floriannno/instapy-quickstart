@@ -10,13 +10,15 @@ Am Anfang des `<script>`-Blocks steht die Konfiguration:
 
 ```js
 var CONFIG = {
-  webhookUrl: "",        // Zapier "Catch Hook", Make-Webhook oder eigener Endpunkt
+  webhookUrl: "https://services.leadconnectorhq.com/hooks/…",  // GoHighLevel "Eingehender Webhook"
   instagramHandle: ""    // euer Instagram-Name ohne @ (für den DM-Button am Ende)
 };
 ```
 
-- **webhookUrl gesetzt:** Die Antworten werden per POST (Formular-Felder) an die URL
-  geschickt. Felder: `vorname`, `instagram`, `geschlecht`, `email`, `telefon`,
+- **webhookUrl gesetzt** (aktuell: der GoHighLevel-Workflow „fragebogen“): Die Antworten
+  werden als JSON per POST an die URL geschickt. In GoHighLevel einmal das Formular
+  absenden und dann im Trigger „Beispielanfragen abrufen“ klicken, um die Felder
+  zuzuordnen. Felder: `vorname`, `instagram`, `geschlecht`, `email`, `telefon`,
   `bestaetigung`, `symptome`, `symptome_sonstiges`, `seit`, `schmerzstufe`,
   `bisher_probiert`, `bisher_probiert_sonstiges`, `was_geholfen`, `woran_gescheitert`,
   `veraenderungswunsch`, `beruf`, `arbeitszeit`, `erstes_ohne_beschwerden`,
