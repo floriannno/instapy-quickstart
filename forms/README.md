@@ -50,7 +50,11 @@ Wird der Link manuell aus der Instagram-App verschickt, ist `contact_id` leer. D
 bleibt zum Zuordnen nur, was die Person selbst eintippt: Instagram-Name (Frage 1,
 Feld `instagram`), E-Mail und Telefon (letzter Schritt).
 
-## Ablauf (13 Fragen + Story-Seite + 7-Säulen-Check, ca. 8 Minuten)
+## Ablauf (22 Seiten, ca. 8 Minuten)
+
+Design: Farben und Schriften der MyBodyMind-Seiten (Plus Jakarta Sans, Inter, Petrol/Gold/Creme).
+Die Fortschrittsanzeige zählt alle Seiten („Seite 3 von 22“).
+
 
 1. Vorname, Instagram-Name, weiblich/männlich/divers
 2. Symptome (Mehrfachauswahl inkl. Tinnitus, Müdigkeit, Depressionen, Trauer,
@@ -71,7 +75,7 @@ Feld `instagram`), E-Mail und Telefon (letzter Schritt).
     übernommen aus der Schmerz- & Symptomanalyse (Bewegung, Nervensystem & Psyche,
     Stress & Achtsamkeit, Ernährung & Darmgesundheit, Regeneration & Schlaf,
     Soziales Umfeld, Schmerzverständnis)
-14. Investitionsbereitschaft (Beträge zum Anklicken)
+14. Investitionsbereitschaft (Bis 1.000 € / 1.000–3.000 € / 3.000–5.000 € / Mehr als 5.000 €)
 15. E-Mail (Pflicht), Telefon (optional), Bestätigung → „Bewerbung absenden“
 
 Texte, Antwortoptionen und Beträge lassen sich direkt im `STEPS`-Array im Script anpassen.
