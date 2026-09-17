@@ -26,9 +26,9 @@ var CONFIG = {
   `zusammenfassung` (alles als lesbarer Text). Dazu je Säule drei Felder
   `saeule_<name>_frage1`, `saeule_<name>_frage2`, `saeule_<name>_skala` (1–10) mit
   `<name>` = bewegung, psyche, stress, ernaehrung, schlaf, sozial, schmerzverstaendnis.
-- **webhookUrl leer** (oder Versand fehlgeschlagen): Die Person bekommt am Ende ihre
-  Antworten als Text mit „Antworten kopieren“ und einem DM-Button und schickt sie
-  selbst per Instagram-Nachricht.
+- Der Versand läuft still im Hintergrund. Die letzte Seite zeigt nur „Vielen Dank“ –
+  bewusst keine Statusmeldung und keine Kopierfunktion. Klappt der erste Versuch nicht,
+  wird automatisch ein zweiter ohne CORS-Preflight gestartet.
 
 ## Zuordnung zum GoHighLevel-Kontakt (Link-Parameter)
 
@@ -80,6 +80,6 @@ keine Antwort braucht mehr als zwei Zeilen (automatisch geprüft ab 320px Breite
     Stress & Achtsamkeit, Ernährung & Darmgesundheit, Regeneration & Schlaf,
     Soziales Umfeld, Schmerzverständnis)
 15. Investitionsbereitschaft (Bis 1.000 € / 1.000–3.000 € / 3.000–5.000 € / Mehr als 5.000 €)
-16. E-Mail (Pflicht), Telefon (optional), Bestätigung → „Bewerbung absenden“
+16. E-Mail (Pflicht), Telefon (optional), Bestätigung → „Kostenlose Analyse erhalten“
 
 Texte, Antwortoptionen und Beträge lassen sich direkt im `STEPS`-Array im Script anpassen.
