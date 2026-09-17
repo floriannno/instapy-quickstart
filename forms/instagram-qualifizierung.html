@@ -47,6 +47,7 @@
   .hero{border-radius:16px; overflow:hidden; background:var(--soft)}
   .hero img{display:block; width:100%; max-width:100%; aspect-ratio:5/4; object-fit:cover}
   .intro p{margin:0; font-size:16px; color:var(--text)}
+  .intro p b{color:var(--ink); font-weight:700}
   .intro{display:flex; flex-direction:column; gap:12px}
   .facts{display:flex; flex-wrap:wrap; gap:8px}
   .fact{font-size:13px; font-weight:600; color:var(--brand-deep); background:var(--soft); border:1px solid var(--line); padding:6px 12px; border-radius:999px}
@@ -383,9 +384,8 @@
       html = '<section class="card intro">'
         + '<div class="hero"><img src="'+IMG_HERO+'" alt="Dominik Barkow, Schmerzfrei-Coach"></div>'
         + '<h1>Dein Schmerzfrei-Check</h1>'
-        + '<p>Hey, schön, dass du hier bist! Ich bin Dominik – und ich hatte selbst über zehn Jahre lang chronische Schmerzen, jeden einzelnen Tag. Heute bin ich schmerzfrei und helfe Menschen, die genau da stehen, wo ich damals stand.</p>'
-        + '<p>Damit ich dir wirklich etwas Sinnvolles schreiben kann und keine Standard-Nachricht, brauche ich ein ehrliches Bild von deiner Situation. Dafür sind die nächsten Fragen da – nimm dir kurz Zeit dafür.</p>'
-        + '<div class="facts"><span class="fact">'+(PAGE_COUNT-1)+' Seiten mit Fragen</span><span class="fact">ca. 8 Minuten</span></div>'
+        + '<p>Hey, schön, dass du hier bist! Ich bin Dominik – und ich hatte selbst über <b>10 Jahre</b> lang chronische Schmerzen, jeden einzelnen Tag. Heute bin ich <b>schmerzfrei</b> und helfe Menschen, die genau da stehen, wo ich damals stand. Damit ich ein realistisches Bild von deiner Situation bekomme, fülle bitte die Fragen aus.</p>'
+        + '<div class="facts"><span class="fact">'+(PAGE_COUNT-1)+' Seiten</span><span class="fact">ca. 8 Minuten</span></div>'
         + '</section>';
     }
     else if (s.kind==="name"){
