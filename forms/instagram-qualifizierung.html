@@ -21,6 +21,7 @@
     color-scheme:light;
   }
   *{box-sizing:border-box}
+  [hidden]{display:none !important}
   html,body{height:100%}
   body{margin:0; background:var(--cream); color:var(--text); font-family:var(--body); font-size:15.5px; line-height:1.6; -webkit-font-smoothing:antialiased}
   button,input,textarea{font:inherit; color:inherit}
@@ -264,27 +265,27 @@
     { id:"intro", kind:"intro" },
     { id:"name", kind:"name", title:"Wie darf ich dich nennen?" },
     { id:"symptoms", kind:"multi", title:"Was sind deine Symptome?", hint:"Mehrfachauswahl möglich.",
-      other:{key:"symptomsOther", label:"Anderes", ph:"z. B. Bandscheibenvorfall, Fibromyalgie, Reizdarm …"},
+      other:{key:"symptomsOther", label:"Anderes", ph:"z. B. Bandscheibenvorfall"},
       options:["Rückenschmerzen","Nackenschmerzen","Schulterschmerzen","Kopfschmerzen","Migräne","Knie- oder Hüftschmerzen","Fußschmerzen",
                "Gelenkschmerzen","Muskelschmerzen","Kieferschmerzen","Bauch- oder Darmprobleme","Schwindel","Kribbeln oder Taubheit","Tinnitus",
-               "Müdigkeit oder Erschöpfung","Depressionen oder Ängste","Trauer","Unbeweglichkeit","Unzufriedenheit"] },
+               "Müdigkeit oder Erschöpfung","Depressionen oder Ängste","Trauer","Unbeweglichkeit"] },
     { id:"since", kind:"single", title:"Seit wann begleiten dich die Beschwerden?",
       options:["Weniger als 3 Monate","3 bis 12 Monate","1 bis 5 Jahre","Mehr als 5 Jahre"] },
     { id:"level", kind:"scale", min:0, max:10, levels:PAIN_LEVELS, colors:PAIN_COLORS, ends:["kein Schmerz","unerträglich"],
       title:"Wie stark sind deine Beschwerden an einem normalen Tag?", empty:"Tippe auf die Zahl, die zu deinem Alltag passt." },
     { id:"tried", kind:"tried", title:"Was hast du bisher schon probiert?", hint:"Mehrfachauswahl möglich.",
       options:["Physiotherapie","Osteopathie / Chiropraktik","Schmerzmittel","Spritzen / Infiltrationen","Operation","Massage","Yoga / Dehnen","Krafttraining / Fitness",
-               "Psychotherapie","Ernährungsumstellung","Akupunktur / TCM","Reha / Kur","Viele Arztbesuche","Anderes"],
-      reflect:"Reflektier mal ehrlich: Was davon hat wirklich geholfen – und was nicht?",
+               "Psychotherapie","Ernährungsumstellung","Akupunktur / TCM","Reha / Kur","Viele Arztbesuche","MRT / CT","Anderes"],
+      reflect:"Reflektier mal ehrlich: Was davon hat wirklich geholfen?",
       placeholder:"Zum Beispiel: Physio hat kurz geholfen, nach zwei Wochen war alles wieder da. Die Spritzen haben gar nichts gebracht …" },
     { id:"blocked", kind:"multi", title:"Woran ist es bisher gescheitert?", hint:"Mehrfachauswahl möglich.",
-      options:["Niemand fand die Ursache","Ich weiß nicht, was richtig ist","Ich bleibe schwer dran",
+      options:["Niemand fand die Ursache","Ich weiß nicht, was richtig ist",
                "Ich mache viel, es bringt kaum etwas","Zu wenig Zeit oder Energie","Angst, etwas falsch zu machen","Ich habe die Hoffnung verloren"] },
     { id:"change", kind:"scale", min:1, max:10, levels:CHANGE_LEVELS, colors:CHANGE_COLORS, ends:["nur mal schauen","alles dafür tun"],
       title:"Wie sehr willst du, dass sich das ändert?", empty:"Wähle eine Zahl von 1 bis 10." },
     { id:"job", kind:"job", title:"Was machst du beruflich?",
       hours:["Unter 20 Stunden pro Woche","20 bis 35 Stunden","35 bis 45 Stunden","Über 45 Stunden","Nicht berufstätig / Rente"] },
-    { id:"future", kind:"text", title:"Stell dir vor, deine Beschwerden wären in 6 bis 12 Monaten weg. Was wäre das Erste, was du tun würdest?",
+    { id:"future", kind:"text", title:"Stell dir vor, deine Beschwerden wären weg. Was wäre das Erste, was du tun würdest?",
       placeholder:"Zum Beispiel: Wieder mit meinen Kindern toben, eine lange Wanderung machen, morgens ohne Angst aufstehen …" },
     { id:"time", kind:"time", title:"Bist du gerade in Behandlung – und hast du Zeit, deine Themen anzugehen?",
       options:["Ja, ich bin aktuell in Behandlung","Nein, aktuell nicht","In Behandlung, habe aber Zeit"] },
@@ -385,14 +386,13 @@
         + '<div class="hero"><img src="'+IMG_HERO+'" alt="Dominik Barkow, Schmerzfrei-Coach"></div>'
         + '<h1>Dein Schmerzfrei-Check</h1>'
         + '<p>Hey, schön, dass du hier bist! Ich bin Dominik – und ich hatte selbst über <b>10 Jahre</b> lang chronische Schmerzen, jeden einzelnen Tag. Heute bin ich <b>schmerzfrei</b> und helfe Menschen, die genau da stehen, wo ich damals stand. Damit ich ein realistisches Bild von deiner Situation bekomme, fülle bitte die Fragen aus.</p>'
-        + '<div class="facts"><span class="fact">'+(PAGE_COUNT-1)+' Seiten</span><span class="fact">ca. 8 Minuten</span></div>'
+        + '<div class="facts"><span class="fact">'+PAGE_COUNT+' Seiten</span><span class="fact">ca. 8 Minuten</span></div>'
         + '</section>';
     }
     else if (s.kind==="name"){
       var n = answers.name || {};
       html = '<section class="card"><h2>'+esc(s.title)+'</h2>'
         + '<div class="field"><label for="f-first">Vorname</label><input class="input" id="f-first" type="text" autocomplete="given-name" placeholder="Dein Vorname" value="'+esc(n.first)+'"></div>'
-        + '<div class="field"><label for="f-insta">Dein Instagram-Name</label><div class="withat"><input class="input" id="f-insta" type="text" autocomplete="username" autocapitalize="none" placeholder="dein.name" value="'+esc(n.insta)+'"></div></div>'
         + '<div class="field"><label>Du bist</label><div class="chips" role="radiogroup">'
         + ["Weiblich","Männlich","Divers"].map(function(g,i){ return '<button type="button" class="chip" role="radio" id="gender-'+i+'" data-val="'+g+'" aria-checked="'+(n.gender===g)+'">'+g+'</button>'; }).join("")
         + '</div></div></section>';
@@ -461,8 +461,8 @@
         + '<div class="hero"><img src="'+IMG_STORY+'" alt="Dominik Barkow"></div>'
         + '<h2>Ich weiß, wie sich das anfühlt</h2>'
         + '<div class="story">'
-        + '<p>Über zehn Jahre hatte ich selbst chronische Schmerzen – <b>jeden einzelnen Tag</b>. Rücken, Nacken, Knie, dazu Schwindel und irgendwann depressive Phasen. Jeder Spezialist fand sein Puzzleteil, aber niemand das ganze Bild.</p>'
-        + '<p>Erst als ich alle Faktoren zusammen betrachtet habe, wurde ich schmerzfrei. Aus diesem Weg ist MyBodyMind entstanden.</p>'
+        + '<p>Über zehn Jahre hatte ich selbst chronische Schmerzen – <b>jeden einzelnen Tag</b>. Rücken, Nacken, Knie, dazu Schwindel, Unverträglichkeiten und irgendwann depressive Phasen. Jeder Spezialist fand sein Puzzleteil, aber niemand das ganze Bild.</p>'
+        + '<p>Erst als ich meinen Körper ganzheitlich betrachtet habe, wurde ich schmerzfrei. Aus diesem Weg ist MyBodyMind entstanden.</p>'
         + '</div>'
         + '<div class="proof"><div><b>1.200+</b><span>'+soft('begleitete Menschen')+'</span></div>'
         + '<div><b>10 Jahre</b><span>'+soft('selbst betroffen')+'</span></div>'
@@ -482,12 +482,12 @@
         + '<h2>Die 7 Säulen deiner Schmerzfreiheit</h2>'
         + '<div class="story">'
         + '<p>Chronischer Schmerz entsteht selten in einem einzigen System. Er entsteht im Zusammenspiel – und genau deshalb gibt es auch mehrere Stellschrauben, an denen du drehen kannst.</p>'
-        + '<p>Aus hunderten bekannten Einflussfaktoren haben wir die <b>7 herausgefiltert, die den größten Einfluss haben und die du selbst beeinflussen kannst</b>:</p>'
+        + '<p>Aus hunderten wissenschaftlich nachgewiesenen Einflussfaktoren haben wir die <b>7 herausgefiltert, die den größten Einfluss haben und die du selbst beeinflussen kannst</b>:</p>'
         + '</div>'
         + '<ol class="pillar-list">'+PILLAR_STEPS.map(function(p,i){
             return '<li><span class="pn">'+(i+1)+'</span><span class="pt">'+soft(esc(p.name))+'</span></li>';
           }).join("")+'</ol>'
-        + '<div class="next-up"><span class="k">So geht es weiter</span><span>Zu jeder Säule bekommst du zwei kurze Fragen und einen Regler – damit ich sehe, welche Säulen bei dir am meisten ziehen.</span></div>'
+        + '<div class="next-up"><span class="k">So geht es weiter</span><span>Zu jeder Säule bekommst du zwei kurze Fragen und einen Regler – damit ich sehe, welche Säulen bei dir am meisten Potenzial haben.</span></div>'
         + '</section>';
     }
     else if (s.kind==="contact"){
@@ -556,12 +556,12 @@
 
   function bind(s){
     if (s.kind==="name"){
-      var f = document.getElementById("f-first"), g = document.getElementById("f-insta");
-      function upd(){ answers.name = {first:f.value, insta:g.value.replace(/^@/,""), gender:(answers.name||{}).gender||""}; validate(); save(); }
-      f.addEventListener("input", upd); g.addEventListener("input", upd);
+      var f = document.getElementById("f-first");
+      function upd(){ answers.name = {first:f.value, insta:(answers.name||{}).insta||"", gender:(answers.name||{}).gender||""}; validate(); save(); }
+      f.addEventListener("input", upd);
       stepsEl.querySelectorAll(".chip").forEach(function(c){
         c.addEventListener("click", function(){
-          answers.name = answers.name || {first:f.value, insta:g.value};
+          answers.name = answers.name || {first:f.value, insta:""};
           answers.name.gender = c.getAttribute("data-val");
           stepsEl.querySelectorAll(".chip").forEach(function(o){ o.setAttribute("aria-checked", o===c); });
           validate(); save();
@@ -599,7 +599,7 @@
     var a = answers;
     switch (s.kind){
       case "intro": case "done": case "story": case "pillars": return true;
-      case "name": return !!(a.name && a.name.first.trim().length>=2 && a.name.insta.trim().length>=2 && a.name.gender);
+      case "name": return !!(a.name && a.name.first.trim().length>=2 && a.name.gender);
       case "multi": return (a[s.id]||[]).length>0;
       case "single": return !!a[s.id];
       case "scale": return typeof a[s.id]==="number";
@@ -621,7 +621,7 @@
   function summaryText(){
     var n = answers.name || {}, c = answers.contact || {};
     return [
-      "Schmerzfrei-Check – "+(n.first||"")+" (@"+(n.insta||"")+", "+(n.gender||"")+")"+(LINK.contact_id ? " · Kontakt-ID "+LINK.contact_id : ""),
+      "Schmerzfrei-Check – "+(n.first||"")+" ("+(n.gender||"")+")"+(n.insta ? " · @"+n.insta : "")+(LINK.contact_id ? " · Kontakt-ID "+LINK.contact_id : ""),
       "E-Mail: "+(c.email||"")+(c.phone ? " · Tel: "+c.phone : ""),
       "Symptome: "+((answers.symptoms||[]).join(", "))+(answers.symptomsOther ? " – "+answers.symptomsOther : ""),
       "Seit: "+(answers.since||""),

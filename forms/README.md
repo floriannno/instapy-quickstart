@@ -47,8 +47,8 @@ https://…/instagram-qualifizierung.html?c={{contact.id}}&name={{contact.first_
   ihr den Instagram-Namen in einem Custom Field pflegt).
 
 Wird der Link manuell aus der Instagram-App verschickt, ist `contact_id` leer. Dann
-bleibt zum Zuordnen nur, was die Person selbst eintippt: Instagram-Name (Frage 1,
-Feld `instagram`), E-Mail und Telefon (letzter Schritt).
+bleibt zum Zuordnen nur, was die Person selbst eintippt: E-Mail und Telefon
+(letzter Schritt).
 
 ## Ablauf (23 Seiten, ca. 8 Minuten)
 
@@ -58,7 +58,7 @@ Lange Wörter werden per weicher Trennstelle umbrochen („Rücken-schmerzen“)
 keine Antwort braucht mehr als zwei Zeilen (automatisch geprüft ab 320px Breite).
 
 
-1. Vorname, Instagram-Name, weiblich/männlich/divers
+1. Vorname, weiblich/männlich/divers
 2. Symptome (Mehrfachauswahl inkl. Tinnitus, Müdigkeit, Depressionen, Trauer,
    Unbeweglichkeit, Unzufriedenheit) + Freifeld für Diagnose
 3. Seit wann? (< 3 Monate, 3–12 Monate, 1–5 Jahre, > 5 Jahre)
