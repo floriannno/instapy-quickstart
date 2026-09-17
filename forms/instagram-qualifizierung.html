@@ -136,17 +136,17 @@
   .nav-in{position:relative; max-width:640px; margin:0 auto; display:flex; justify-content:center; align-items:center; min-height:56px}
   .btn{appearance:none; border:0; border-radius:999px; padding:17px 24px; font-family:var(--head); font-weight:800; font-size:16.5px; cursor:pointer;
        display:inline-flex; align-items:center; justify-content:center; gap:8px; transition:transform .15s, box-shadow .15s, background .15s, opacity .15s}
-  .btn.primary{width:100%; max-width:calc(100% - 112px); background:var(--gold); color:var(--ink); box-shadow:0 10px 26px rgba(219,169,42,.34)}
+  .btn.primary{width:100%; max-width:calc(100% - 96px); background:var(--gold); color:var(--ink); box-shadow:0 10px 26px rgba(219,169,42,.34)}
   @media (max-width:360px){
     .btn{padding-inline:16px; font-size:15.5px}
-    .btn.back{width:42px; height:42px}
-    .btn.primary{max-width:calc(100% - 100px)}
+    .btn.back{width:36px; height:36px}
+    .btn.primary{max-width:calc(100% - 88px)}
   }
   .btn.primary:hover:not(:disabled){background:var(--gold-light); transform:translateY(-2px); box-shadow:0 14px 34px rgba(219,169,42,.46)}
   .btn.primary:disabled{opacity:.45; cursor:not-allowed; box-shadow:none}
-  .btn.back{position:absolute; left:0; top:50%; transform:translateY(-50%); width:48px; height:48px; padding:0; border-radius:50%;
+  .btn.back{position:absolute; left:0; top:50%; transform:translateY(-50%); width:40px; height:40px; padding:0; border-radius:50%;
             background:var(--bg); border:1.5px solid var(--line); color:var(--petrol); box-shadow:var(--shadow)}
-  .btn.back svg{width:20px; height:20px}
+  .btn.back svg{width:17px; height:17px}
   .btn.back:hover{border-color:var(--brand); color:var(--ink)}
   .btn.petrol{background:var(--petrol); color:#fff}
   .nav[hidden]{display:none}
